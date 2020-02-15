@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using social_journal.Base;
 using social_journal.Base.Loggers;
 using social_journal.DL;
-using social_journal.DL.Entities;
+using social_journal.DL.Interfaces;
 
 namespace social_journal.BL
 {
@@ -18,18 +18,18 @@ namespace social_journal.BL
             var connection = configuration["ConnectionString"];
 #endif
 
-            services.AddDbContext<MainDBContext>(options =>
+            services.AddDbContext<JournalDBContext>(options =>
                 options.UseSqlServer(connection)
             );
 
             return services;
         }
 
-        public static IServiceCollection AddPostsRepository(this IServiceCollection services)
+        public static IServiceCollection AddRepositoryProvider(this IServiceCollection services)
         {
             services.AddSingleton<ILog, Logger>();
-            services.AddScoped<IBaseContext, MainAppContext>();
-            services.AddScoped<IAsyncRepository<Post>, BaseRepository<Post, IBaseContext>>();
+            services.AddScoped<IJournalAppContext, JournalAppContext>();
+            services.AddScoped<IJournalRepositoryProvider, JournalRepositoryProvider>();
             return services;
         }
     }

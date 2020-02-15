@@ -8,7 +8,7 @@ using social_journal.DL;
 
 namespace social_journal.DL.Migrations
 {
-    [DbContext(typeof(MainDBContext))]
+    [DbContext(typeof(JournalDBContext))]
     partial class MainDBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -3,8 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace social_journal.DL.Entities
 {
-    public class Post : Base
+    public class Post : BaseEntity
     {
+        public Post(string title)
+        {
+            Title = title;
+            Created = DateTime.Now;
+        }
+
         [Required]
         [StringLength(100)]
         public string Title { get; set; }

@@ -2,9 +2,10 @@
 
 namespace social_journal.Base
 {
-    public interface IBaseContext
+    public interface IBaseContext<TContext>
+        where TContext : DbContext
     {
         ILog Logger { get; set; }
-        DbContext EFContext { get; set; }
+        TContext EFContext { get; set; }
     }
 }

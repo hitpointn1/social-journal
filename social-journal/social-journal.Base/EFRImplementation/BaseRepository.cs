@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace social_journal.Base
 {
-    public class BaseRepository<TEntity, TContext> : IAsyncRepository<TEntity>
+    public abstract class BaseRepository<TEntity, TAppContext, TDBContext> : IAsyncRepository<TEntity>
         where TEntity : class, IEntity
-        where TContext : IBaseContext
+        where TDBContext : DbContext
+        where TAppContext : IBaseContext<TDBContext>
     {
-        protected readonly DbContext context;
+        protected readonly TDBContext context;
         protected readonly ILog logger;
 
-        public BaseRepository(TContext context)
+        public BaseRepository(TAppContext context)
         {
             this.context = context.EFContext;
             logger = context.Logger;

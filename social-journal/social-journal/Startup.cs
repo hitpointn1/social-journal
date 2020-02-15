@@ -20,7 +20,7 @@ namespace social_journal
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureSQLServer(Configuration);
-            services.AddPostsRepository();
+            services.AddRepositoryProvider();
             services.AddControllersWithViews();
         }
 

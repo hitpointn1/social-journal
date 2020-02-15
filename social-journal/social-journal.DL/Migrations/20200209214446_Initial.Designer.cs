@@ -9,7 +9,7 @@ using social_journal.DL;
 
 namespace social_journal.DL.Migrations
 {
-    [DbContext(typeof(MainDBContext))]
+    [DbContext(typeof(JournalDBContext))]
     [Migration("20200209214446_Initial")]
     partial class Initial
     {

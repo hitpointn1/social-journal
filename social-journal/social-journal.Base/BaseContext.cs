@@ -2,15 +2,16 @@
 
 namespace social_journal.Base
 {
-    public class BaseContext : IBaseContext
+    public class BaseContext<TContext> : IBaseContext<TContext>
+        where TContext : DbContext
     {
-        public BaseContext(ILog logger, DbContext eFContext)
+        public BaseContext(ILog logger, TContext eFContext)
         {
             Logger = logger;
             EFContext = eFContext;
         }
 
         public ILog Logger { get; set; }
-        public DbContext EFContext { get; set; }
+        public TContext EFContext { get; set; }
     }
 }

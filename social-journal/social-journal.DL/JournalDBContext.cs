@@ -3,9 +3,9 @@ using social_journal.DL.Entities;
 
 namespace social_journal.DL
 {
-    public class MainDBContext : DbContext
+    public class JournalDBContext : DbContext
     {
-        public MainDBContext(DbContextOptions options)
+        public JournalDBContext(DbContextOptions options)
             : base(options)
         {
         }
