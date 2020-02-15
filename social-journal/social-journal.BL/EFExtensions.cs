@@ -28,8 +28,8 @@ namespace social_journal.BL
         public static IServiceCollection AddRepositoryProvider(this IServiceCollection services)
         {
             services.AddSingleton<ILog, Logger>();
-            services.AddScoped<IJournalAppContext, JournalAppContext>();
             services.AddScoped<IJournalRepositoryProvider, JournalRepositoryProvider>();
+            services.AddScoped<IJournalAppContext, JournalAppContext>();
             return services;
         }
     }

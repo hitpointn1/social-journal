@@ -6,15 +6,16 @@ namespace social_journal.Base.EFRImplementation
     /// UoW-Pattern
     /// </summary>
     /// <typeparam name="TContext"></typeparam>
-    public class BaseRepositoryProvider<TAppContext, TDBContext> : IRepositoryProvider<TAppContext, TDBContext>
+    public class BaseRepositoryProvider<TDBContext> : IRepositoryProvider<TDBContext>
         where TDBContext : DbContext
-        where TAppContext : IBaseContext<TDBContext>
     {
-        public TAppContext Context { get; set; }
+        public TDBContext DbContext { get; set; }
+        public ILog Logger { get; set; }
 
-        public BaseRepositoryProvider(TAppContext context)
+        public BaseRepositoryProvider(TDBContext context, ILog logger)
         {
-            Context = context;
+            DbContext = context;
+            Logger = logger;
         }
     }
 }

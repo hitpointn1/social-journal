@@ -9,35 +9,34 @@ using System.Threading.Tasks;
 
 namespace social_journal.Base
 {
-    public abstract class BaseRepository<TEntity, TAppContext, TDBContext> : IAsyncRepository<TEntity>
+    public abstract class BaseRepository<TEntity, TDBContext> : IAsyncRepository<TEntity>
         where TEntity : class, IEntity
         where TDBContext : DbContext
-        where TAppContext : IBaseContext<TDBContext>
     {
-        protected readonly TDBContext context;
-        protected readonly ILog logger;
+        protected readonly TDBContext DbContext;
+        protected readonly ILog Logger;
 
-        public BaseRepository(TAppContext context)
+        public BaseRepository(TDBContext context, ILog logger)
         {
-            this.context = context.EFContext;
-            logger = context.Logger;
+            DbContext = context;
+            Logger = logger;
         }
 
         public async Task Add(TEntity entity)
         {
-            context.Set<TEntity>().Add(entity);
-            await context.SaveChangesAsync();
+            DbContext.Set<TEntity>().Add(entity);
+            await DbContext.SaveChangesAsync();
             LogAction(DBAction.Add, entity);
         }
 
         public async Task Add(IEnumerable<TEntity> entities)
         {
-            context.Set<TEntity>().AddRange(entities);
-            await context.SaveChangesAsync();
+            DbContext.Set<TEntity>().AddRange(entities);
+            await DbContext.SaveChangesAsync();
             LogAction(DBAction.Add, entities);
         }
 
-        public async Task Delete(TEntity entity)
+        public async Task Remove(TEntity entity)
         {
             if (entity == null || entity.ID == 0)
             {
@@ -45,26 +44,30 @@ namespace social_journal.Base
                 return;
             }
                 
-            context.Set<TEntity>().Remove(entity);
-            await context.SaveChangesAsync();
+            DbContext.Set<TEntity>().Remove(entity);
+            await DbContext.SaveChangesAsync();
             LogAction(DBAction.Delete, entity);
         }
 
-        public async Task Delete(Expression<Func<TEntity, bool>> predicate)
+        public async Task Remove(IEnumerable<TEntity> entities)
         {
-            var dbSet = context.Set<TEntity>();
-            var entities = dbSet.Where(predicate);
-            foreach (var entity in entities)
-                dbSet.Remove(entity);
+            var dbSet = DbContext.Set<TEntity>();
+            dbSet.RemoveRange(entities);
 
-            await context.SaveChangesAsync();
+            await DbContext.SaveChangesAsync();
             LogAction(DBAction.Delete, entities);
         }
 
-        public async Task Delete(int id)
+        public async Task Remove(Expression<Func<TEntity, bool>> predicate)
         {
-            TEntity entity = await context.Set<TEntity>().FindAsync(id);
-            await Delete(entity);
+            var entities = await GetWithConditions(predicate);
+            await Remove(entities);
+        }
+
+        public async Task Remove(int id)
+        {
+            TEntity entity = await DbContext.Set<TEntity>().FindAsync(id);
+            await Remove(entity);
         }
 
         public Task<IEnumerable<TEntity>> GetAll(bool asNoTracking = false)
@@ -74,7 +77,7 @@ namespace social_journal.Base
 
         public async Task<TEntity> GetByID(int id, bool asNoTracking = false)
         {
-            var dbSet = context.Set<TEntity>();
+            var dbSet = DbContext.Set<TEntity>();
             TEntity entity = asNoTracking
                 ? await dbSet.FindAsync(id)
                 : await dbSet.AsNoTracking().FirstOrDefaultAsync(item => item.ID == id);
@@ -87,7 +90,7 @@ namespace social_journal.Base
         {
             return predicate == null
                 ? 0
-                : await context.Set<TEntity>().CountAsync(predicate);
+                : await DbContext.Set<TEntity>().CountAsync(predicate);
         }
 
         public async Task<IEnumerable<TEntity>> GetPaged(Expression<Func<TEntity, bool>> predicate,
@@ -98,12 +101,12 @@ namespace social_journal.Base
         {
             IQueryable<TEntity> query;
             if (page != 0 && count != 0)
-                query = context.Set<TEntity>()
+                query = DbContext.Set<TEntity>()
                     .Where(predicate)
                     .Skip((page - 1) * count)
                     .Take(count);
             else
-                query = context.Set<TEntity>()
+                query = DbContext.Set<TEntity>()
                     .Where(predicate);
             if (orderBy != null)
                 query = orderBy(query);
@@ -123,15 +126,15 @@ namespace social_journal.Base
 
         public async Task Update(TEntity entity)
         {
-            context.Set<TEntity>().Update(entity);
-            await context.SaveChangesAsync();
+            DbContext.Set<TEntity>().Update(entity);
+            await DbContext.SaveChangesAsync();
             LogAction(DBAction.Update, entity);
         }
 
         public async Task Update(IEnumerable<TEntity> entities)
         {
-            context.Set<TEntity>().UpdateRange(entities);
-            await context.SaveChangesAsync();
+            DbContext.Set<TEntity>().UpdateRange(entities);
+            await DbContext.SaveChangesAsync();
             LogAction(DBAction.Update, entities);
         }
 
@@ -144,12 +147,12 @@ namespace social_journal.Base
         {
             if (entities.Length == 0 || entities == null)
             {
-                logger.Warning("No items to perform operation");
+                Logger.Warning("No items to perform operation");
                 return;
             }
             string entityIDs = entities.Select(item => item.ID + ", ").ToString();
             string logMessage = string.Format("Successfully {0} new items.\n IDs: {1}", action.GetDescription(), entityIDs.Remove(entityIDs.Length - 2));
-            logger.Info(logMessage);
+            Logger.Info(logMessage);
         }
     }
 }

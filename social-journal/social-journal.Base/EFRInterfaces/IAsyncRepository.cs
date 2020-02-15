@@ -24,8 +24,9 @@ namespace social_journal.Base
             int count,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             bool asNoTracking = false);
-        Task Delete(TEntity entity);
-        Task Delete(Expression<Func<TEntity, bool>> predicate);
-        Task Delete(int id);
+        Task Remove(TEntity entity);
+        Task Remove(IEnumerable<TEntity> entities);
+        Task Remove(Expression<Func<TEntity, bool>> predicate);
+        Task Remove(int id);
     }
 }

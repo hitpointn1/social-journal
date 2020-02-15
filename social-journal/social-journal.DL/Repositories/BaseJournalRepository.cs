@@ -1,13 +1,13 @@
 ﻿using social_journal.Base;
 using social_journal.DL.Entities;
-using social_journal.DL.Interfaces;
 
 namespace social_journal.DL.Repositories
 {
-    public class BaseJournalRepository<TEntity> : BaseRepository<TEntity, IJournalAppContext, JournalDBContext>
+    public class BaseJournalRepository<TEntity> : BaseRepository<TEntity, JournalDBContext>
        where TEntity : BaseEntity
     {
-        public BaseJournalRepository(IJournalAppContext context) : base(context)
+        public BaseJournalRepository(JournalDBContext context, ILog logger)
+            : base(context, logger)
         {
         }
     }

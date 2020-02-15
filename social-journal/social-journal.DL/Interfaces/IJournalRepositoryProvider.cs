@@ -4,7 +4,7 @@ using social_journal.DL.Repositories;
 
 namespace social_journal.DL.Interfaces
 {
-    public interface IJournalRepositoryProvider : IRepositoryProvider<IJournalAppContext, JournalDBContext>
+    public interface IJournalRepositoryProvider : IRepositoryProvider<JournalDBContext>
     {
         public BaseJournalRepository<Post> PostsRepository { get; }
     }

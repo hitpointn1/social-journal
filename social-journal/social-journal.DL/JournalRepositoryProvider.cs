@@ -1,13 +1,15 @@
-﻿using social_journal.Base.EFRImplementation;
+﻿using social_journal.Base;
+using social_journal.Base.EFRImplementation;
 using social_journal.DL.Entities;
 using social_journal.DL.Interfaces;
 using social_journal.DL.Repositories;
 
 namespace social_journal.DL
 {
-    public class JournalRepositoryProvider : BaseRepositoryProvider<IJournalAppContext, JournalDBContext>, IJournalRepositoryProvider
+    public class JournalRepositoryProvider : BaseRepositoryProvider<JournalDBContext>, IJournalRepositoryProvider
     {
-        public JournalRepositoryProvider(IJournalAppContext context) : base(context)
+        public JournalRepositoryProvider(JournalDBContext context, ILog logger)
+            : base(context, logger)
         {
         }
 
@@ -18,7 +20,7 @@ namespace social_journal.DL
             {
                 if (PostsRepositoryField == null)
                 {
-                    PostsRepositoryField = new BaseJournalRepository<Post>(Context);
+                    PostsRepositoryField = new BaseJournalRepository<Post>(DbContext, Logger);
                 }
                 return PostsRepositoryField;
             }

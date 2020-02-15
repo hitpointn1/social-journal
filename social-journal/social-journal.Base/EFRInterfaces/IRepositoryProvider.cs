@@ -2,10 +2,10 @@
 
 namespace social_journal.Base
 {
-    public interface IRepositoryProvider<TAppContext, TDBContext>
+    public interface IRepositoryProvider<TDBContext>
         where TDBContext : DbContext
-        where TAppContext : IBaseContext<TDBContext>
     {
-        TAppContext Context { get; set; }
+        TDBContext DbContext { get; set; }
+        ILog Logger { get; set; }
     }
 }
