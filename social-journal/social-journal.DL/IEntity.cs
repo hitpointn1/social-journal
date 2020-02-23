@@ -1,4 +1,4 @@
-﻿namespace social_journal.Base
+﻿namespace social_journal.DL
 {
     public interface IEntity
     {

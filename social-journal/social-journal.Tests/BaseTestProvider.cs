@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using social_journal.Base.Loggers;
+﻿using social_journal.Base.Loggers;
 using social_journal.DL;
-using social_journal.DL.Interfaces;
+using social_journal.DL.AppContext;
+using social_journal.DL.RepositoryProvider;
 using System;
 
 namespace social_journal.Tests

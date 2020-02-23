@@ -1,8 +1,7 @@
-﻿using social_journal.Base;
-using social_journal.DL.Entities;
+﻿using social_journal.DL.Entities;
 using social_journal.DL.Repositories;
 
-namespace social_journal.DL.Interfaces
+namespace social_journal.DL.RepositoryProvider
 {
     public interface IJournalRepositoryProvider : IRepositoryProvider<JournalDBContext>
     {

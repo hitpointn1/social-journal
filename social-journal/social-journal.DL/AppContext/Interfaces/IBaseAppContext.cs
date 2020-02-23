@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using social_journal.Base;
+using social_journal.DL.RepositoryProvider;
 
-namespace social_journal.Base
+namespace social_journal.DL.AppContext
 {
     public interface IBaseAppContext<TDBContext, TProvider>
         where TDBContext : DbContext

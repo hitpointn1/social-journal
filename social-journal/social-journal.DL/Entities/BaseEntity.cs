@@ -1,5 +1,4 @@
-﻿using social_journal.Base;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace social_journal.DL.Entities
 {

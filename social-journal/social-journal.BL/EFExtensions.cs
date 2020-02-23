@@ -3,8 +3,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using social_journal.Base;
 using social_journal.Base.Loggers;
+using social_journal.DL.AppContext;
+using social_journal.DL.RepositoryProvider;
 using social_journal.DL;
-using social_journal.DL.Interfaces;
 
 namespace social_journal.BL
 {

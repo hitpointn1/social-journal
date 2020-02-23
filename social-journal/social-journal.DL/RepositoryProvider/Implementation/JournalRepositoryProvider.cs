@@ -1,10 +1,8 @@
 ﻿using social_journal.Base;
-using social_journal.Base.EFRImplementation;
 using social_journal.DL.Entities;
-using social_journal.DL.Interfaces;
 using social_journal.DL.Repositories;
 
-namespace social_journal.DL
+namespace social_journal.DL.RepositoryProvider
 {
     public class JournalRepositoryProvider : BaseRepositoryProvider<JournalDBContext>, IJournalRepositoryProvider
     {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using social_journal.Base;
 
-namespace social_journal.Base.EFRImplementation
+namespace social_journal.DL.RepositoryProvider
 {
     /// <summary>
     /// UoW-Pattern

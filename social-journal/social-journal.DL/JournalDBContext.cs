@@ -2,8 +2,6 @@
 using social_journal.Base.Mappings;
 using social_journal.Base.Utils;
 using social_journal.DL.Entities;
-using System.IO;
-using System.Text.Json;
 
 namespace social_journal.DL
 {

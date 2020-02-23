@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace social_journal.Base
+namespace social_journal.DL.Repositories
 {
     public interface IAsyncRepository<TEntity>
         where TEntity : IEntity

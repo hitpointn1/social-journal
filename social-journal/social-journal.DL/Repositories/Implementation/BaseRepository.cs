@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using social_journal.Base;
 using social_journal.Base.Enums;
 using social_journal.Base.Utils;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace social_journal.Base
+namespace social_journal.DL.Repositories
 {
     public abstract class BaseRepository<TEntity, TDBContext> : IAsyncRepository<TEntity>
         where TEntity : class, IEntity
