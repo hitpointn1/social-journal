@@ -14,7 +14,7 @@ namespace social_journal.Tests
         {
             var logger = new Logger();
             using var dbContext = new JournalDBContext(true);
-            var context = new JournalAppContext(logger, dbContext, new JournalRepositoryProvider(dbContext, logger));
+            var context = new JournalAppContext(logger, dbContext, new JournalRepositoryProvider(dbContext, logger), null, null);
             delegateWithContext(context);
             dbContext.Dispose();
         }
