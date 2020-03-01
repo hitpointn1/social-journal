@@ -1,0 +1,75 @@
+﻿.journal {
+    border-radius: 15px;
+    background-color: white;
+    min-height: calc(100vh - 68px);
+    width: 800px;
+    font-family: 'Microsoft Tai Le';
+    line-height: 20px;
+}
+
+    .journal_profile {
+        height: 200px;
+        display: flex;
+        margin: 20px 20px 0 20px;
+    }
+        
+        .journal_profile-avatar {
+            padding: 20px;
+            height: 160px;
+            width: 160px;
+        }
+        
+        .journal_profile_info {
+            padding: 10px;
+            height: calc(100% - 20px);
+            width: 600px;
+        }
+        
+            .journal_profile_info-title {
+                height: 30px;
+                width: 100%;
+                font-size: 2em;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .journal_profile_info-block {
+                width: 100%;
+                height: 40px;
+                display: flex;
+            }
+
+                .journal_profile_info-block div {
+                    width: 50%;
+                    text-align: center;
+                }
+                    .journal_profile_info-block div span {
+                        color: gray;
+                        font-size: 0.8em;
+                    }
+                
+                    .journal_profile_info-block div div {
+                        font-weight: bold;
+                        color: #333333;
+                        white-space: nowrap;
+                        width: 100%;
+                        text-align:unset;
+                    }
+
+            .journal_profile_info-survey {
+                width: 100%;
+                height: calc(100% - 80px);
+                padding: 10px;
+                overflow: hidden;
+            }
+
+    .journal_additional {
+        border-top: 2px solid lavender;
+        border-bottom: 2px solid lavender;
+        height: 100px;
+    }
+
+    .journal_feed {
+        margin: 0 20px 20px 20px;
+        min-height: calc(100vh - 368px);
+    }

@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "JournalPage";
+}
+<link rel="stylesheet" href="~/css/journal-page.css" />
+<div class="journal">
+    <div class="journal_profile">
+        <div class="journal_profile-avatar">
+            <div id="avatar-imitation" style="background-color: lightskyblue; height: 100%; width: 160px; border-radius: 10px;"></div>
+        </div>
+        <div class="journal_profile_info">
+            <div class="journal_profile_info-title">@Model.Title</div>
+            <div class="journal_profile_info-block">
+                <div>
+                    <span>Birthday</span>
+                    <div>@Model.Birthday</div>
+                </div>
+                <div>
+                    <span>Country</span>
+                    <div>@Model.Country</div>
+                </div>
+            </div>
+            <div class="journal_profile_info-survey">@Model.Survey</div>
+        </div>
+    </div>
+    <div class="journal_additional">
+        <partial name="JournalAchievements" />
+    </div>
+    <div class="journal_feed">
+        <partial name="JournalPosts" />
+    </div>
+</div>

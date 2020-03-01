@@ -44,8 +44,8 @@ namespace social_journal
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    name: "default", 
+                    pattern: "{controller=JournalMain}/{action=JournalPage}/{id?}");
             });
         }
     }
