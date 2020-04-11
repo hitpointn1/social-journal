@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace social_journal.Models.ViewModels
+namespace social_journal.Models
 {
     public class PostVM
     {

@@ -19,7 +19,7 @@ namespace social_journal.Controllers
 
         public async Task<IActionResult> JournalPage()
         {
-            List<AchievementDTO> achievementsDtos = await service.GetUserAchievements();
+            IEnumerable<AchievementDTO> achievementsDtos = await service.GetUserAchievements();
             IEnumerable<AchievementVM> achievementsVMs = achievementsDtos.Select(item => new AchievementVM() { Description = item.Description, Title = item.Title });
             ProfileDTO profileDto = await service.GetUserProfile();
             ProfileVM profileVM = new ProfileVM()

@@ -7,6 +7,7 @@ namespace social_journal.BL.Services.Interfaces
     public interface IJournalProfileService
     {
         Task<ProfileDTO> GetUserProfile();
-        Task<List<AchievementDTO>> GetUserAchievements();
+        Task<IEnumerable<AchievementDTO>> GetUserAchievements();
+        Task<IEnumerable<PostDTO>> GetUserPosts();
     }
 }
