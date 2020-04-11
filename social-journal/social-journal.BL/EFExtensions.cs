@@ -8,6 +8,8 @@ using social_journal.DL.RepositoryProvider;
 using social_journal.DL;
 using social_journal.DL.Identity;
 using System;
+using social_journal.BL.Services.Interfaces;
+using social_journal.BL.Services.Implementation;
 
 namespace social_journal.BL
 {
@@ -49,6 +51,12 @@ namespace social_journal.BL
                 .AddRoleManager<JournalRoleManager>();
 
             services.AddScoped<IJournalAppContext, JournalAppContext>();
+            return services;
+        }
+
+        public static IServiceCollection GetServices(this IServiceCollection services)
+        {
+            services.AddSingleton<IJournalProfileService, MockService>();
             return services;
         }
     }

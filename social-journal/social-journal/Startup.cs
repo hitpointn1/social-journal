@@ -21,6 +21,7 @@ namespace social_journal
         {
             services.ConfigureSQLServer(Configuration);
             services.InjectJournalContext();
+            services.GetServices();
             services.AddControllersWithViews();
         }
 

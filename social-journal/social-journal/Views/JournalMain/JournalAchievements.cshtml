@@ -1,5 +1,21 @@
-﻿
+﻿@model IEnumerable<AchievementVM>
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
-<div>ACHIEVEMENTS</div>
+<div class="journal_achievements">
+    @foreach(var achievement in Model)
+    {
+        <div class="journal_achievements_item">
+            <div class="journal_achievements_item-picture">
+            </div>
+            <div class="journal_achievements_item-title">
+                <label asp-for="@achievement.Title" />
+                <span>@achievement.Title</span>
+            </div>
+            <div style="display: none;">
+                <label asp-for="@achievement.Description" />
+                <span>@achievement.Description</span>
+            </div>
+        </div>
+    }
+</div>

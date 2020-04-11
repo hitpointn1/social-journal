@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace social_journal.Models.ViewModels
+namespace social_journal.Models
 {
     public class ProfileVM
     {
@@ -12,5 +9,7 @@ namespace social_journal.Models.ViewModels
         public string Survey { get; set; }
         public string Birthday { get; set; }
         public string Country { get; set; }
+
+        public IEnumerable<AchievementVM> Achievements { get; set; }
     }
 }

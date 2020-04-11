@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ProfileVM
+@{
     ViewData["Title"] = "JournalPage";
 }
 <link rel="stylesheet" href="~/css/journal-page.css" />
@@ -11,11 +12,11 @@
             <div class="journal_profile_info-title">@Model.Title</div>
             <div class="journal_profile_info-block">
                 <div>
-                    <span>Birthday</span>
+                    <label asp-for="Birthday">Birthday</label>
                     <div>@Model.Birthday</div>
                 </div>
                 <div>
-                    <span>Country</span>
+                    <label asp-for="Country">Country</label>
                     <div>@Model.Country</div>
                 </div>
             </div>
@@ -23,9 +24,8 @@
         </div>
     </div>
     <div class="journal_additional">
-        <partial name="JournalAchievements" />
+        <partial name="JournalAchievements" model="@Model.Achievements" />
     </div>
     <div class="journal_feed">
-        <partial name="JournalPosts" />
     </div>
 </div>
